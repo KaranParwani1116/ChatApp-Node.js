@@ -1,7 +1,6 @@
 {
   "name": "chat-app",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,10 +10,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bad-words": "^3.0.3",
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KaranParwani1116/ChatApp-Node.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KaranParwani1116/ChatApp-Node.js/issues"
+  },
+  "homepage": "https://github.com/KaranParwani1116/ChatApp-Node.js#readme",
+  "description": ""
 }
