@@ -5,6 +5,28 @@ const $messageForm = document.querySelector('#message-form')
 const $messageFormInput = $messageForm.querySelector('input')
 const $messageFormButton = $messageForm.querySelector('button')
 const $shareLocationButton = document.querySelector('#share-location')
+const $messages = document.querySelector('#messages')
+
+//templates
+const messageTemplate = document.querySelector('#message-template').innerHTML
+const locationTemplate = document.querySelector('#location-template').innerHTML
+
+socket.on('message', (message) => {
+	console.log(message)
+	const html = Mustache.render(messageTemplate, {
+		message
+	})
+
+	$messages.insertAdjacentHTML('beforeend', html)
+})
+
+socket.on('locationMessage', (locationMessage) => {
+	console.log(locationMessage)
+	const html = Mustache.render(locationTemplate, {
+		url: locationMessage
+	})
+	$messages.insertAdjacentHTML('beforeend', html)
+})
 
 $messageForm.addEventListener('submit', (e) => {
 	e.preventDefault()
@@ -37,8 +59,4 @@ $shareLocationButton.addEventListener('click', () => {
 			console.log(ack)
 		})
 	})
-})
-
-socket.on('message', (message) => {
-    console.log(message)
 })
