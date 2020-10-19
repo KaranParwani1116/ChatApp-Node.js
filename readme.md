@@ -34,7 +34,7 @@ Installation of bad-words.js also recommended to be done via [npm](https://www.n
 
 ### Postman Screenshot
 
-<img src = "./screenshots/Welcome-screen.png" width="250" height="250"> | <img src = "./screenshots/Chat-Screen.png" width="250" height="250">
+<img src = "./screenshots/Welcome-Screen.png" width="250" height="250"> | <img src = "./screenshots/Chat-Screen.png" width="250" height="250">
 
 ## Author
 
