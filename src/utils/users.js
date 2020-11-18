@@ -1,5 +1,4 @@
 const users = []
-
 //adduser, removeuser, getuser, getUsersInRoom
 
 const addUser = ({id, username, room}) => {
@@ -49,9 +48,25 @@ const getUsersInRoom = (room) => {
     })
 }
 
+const getTopRoom = () => {
+    const rooms = []
+    users.forEach((item, index) => {
+        const ind = rooms.findIndex((room) => room.name === item.room)
+        if(ind != -1) {
+            rooms[ind].count = rooms[ind].count + 1;
+        } else {
+            const room = {name: item.room, count: 1}
+            rooms.push(room)
+        }
+    })
+
+    return rooms
+}
+
 module.exports = {
     addUser,
     removeUser,
     getUser,
-    getUsersInRoom
+    getUsersInRoom,
+    getTopRoom
 }
