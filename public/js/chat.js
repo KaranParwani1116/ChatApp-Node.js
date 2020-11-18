@@ -37,6 +37,10 @@ const autoScroll = () => {
 	}
 }
 
+/**
+ * socket listens when some other user sends the message to the user
+ * and displayed it to screen
+ */
 socket.on('message', (message) => {
 	console.log(message)
 	const html = Mustache.render(messageTemplate, {
@@ -49,6 +53,11 @@ socket.on('message', (message) => {
 	autoScroll()
 })
 
+/**
+ * socket listens when some other user shares the location to the user
+ * and displayed it to screen
+ */
+
 socket.on('locationMessage', (locationMessage) => {
 	console.log(locationMessage)
 	const html = Mustache.render(locationTemplate, {
@@ -60,6 +69,12 @@ socket.on('locationMessage', (locationMessage) => {
 	autoScroll()
 })
 
+/**
+ * this socket is used to populate the sidebar of chatscreen
+ * which shows the title of the room we are in and the number
+ *  of users in that room
+ */
+
 socket.on('roomData', ({room, users}) => {
 	const html = Mustache.render(sidebarTemplate, {
 		room,
@@ -67,6 +82,10 @@ socket.on('roomData', ({room, users}) => {
 	})
 	document.querySelector('#sidebar').innerHTML = html
 })
+
+/**
+ * this invokes when message send button hits
+ */
 
 $messageForm.addEventListener('submit', (e) => {
 	e.preventDefault()
@@ -82,6 +101,8 @@ $messageForm.addEventListener('submit', (e) => {
 		console.log(ack)
 	})
 })
+
+/**this gets invoked when share location button gets hits */
 
 $shareLocationButton.addEventListener('click', () => {
 	if(!navigator.geolocation) {
@@ -101,6 +122,9 @@ $shareLocationButton.addEventListener('click', () => {
 	})
 })
 
+/**this gets invoked when new user join the room and verifies
+ * that user with the same name doesn't exist in the same room.
+ */
 socket.emit('join', {username, room}, (error) => {
 	if(error) {
 		alert(error)

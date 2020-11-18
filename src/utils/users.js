@@ -1,9 +1,9 @@
 const users = []
 //adduser, removeuser, getuser, getUsersInRoom
 
-const addUser = ({id, username, room}) => {
+const addUser = ({ id, username, room }) => {
     //clean the data
-    if(!username || !room) {
+    if (!username || !room) {
         return {
             error: 'Username and room are required'
         }
@@ -17,22 +17,22 @@ const addUser = ({id, username, room}) => {
     })
 
     //validate user
-    if(existingUser) {
+    if (existingUser) {
         return {
             error: 'Username already exists'
         }
     }
 
     //store user
-    const user = {id, username, room}
+    const user = { id, username, room }
     users.push(user)
-    return {user}
+    return { user }
 }
 
 const removeUser = (id) => {
     const index = users.findIndex((user) => user.id === id)
 
-    if(index != -1) {
+    if (index != -1) {
         return users.splice(index, 1)[0]
     }
 }
@@ -48,19 +48,45 @@ const getUsersInRoom = (room) => {
     })
 }
 
-const getTopRoom = () => {
+/*
+ function to fetch top 5 trending rooms
+ to give suggestions to user
+*/
+
+const getTopRooms = () => {
     const rooms = []
     users.forEach((item, index) => {
         const ind = rooms.findIndex((room) => room.name === item.room)
-        if(ind != -1) {
+        if (ind != -1) {
             rooms[ind].count = rooms[ind].count + 1;
         } else {
-            const room = {name: item.room, count: 1}
+            const room = { name: item.room, count: 1 }
             rooms.push(room)
         }
     })
 
-    return rooms
+    return sortByCount(rooms)
+}
+
+/*
+comparator to sort room name by most number of
+people in it.
+*/
+const sortByCount = (rooms) => {
+    //sorting in descending order
+    rooms.sort(function (a, b) {
+        if (a.count < b.count) {
+            return -1;
+        }
+
+        if (a.count > b.count) {
+            return 1;
+        }
+
+        return 0;
+    })
+
+    return rooms.reverse().splice(0,5)
 }
 
 module.exports = {
@@ -68,5 +94,5 @@ module.exports = {
     removeUser,
     getUser,
     getUsersInRoom,
-    getTopRoom
+    getTopRooms
 }
