@@ -177,7 +177,7 @@ button:disabled {
 }
 
 .users {
-    list-style-type: none;
+    list-style-type: disc;
     font-weight: 300;
     padding: 12px 24px 0 24px;
 }

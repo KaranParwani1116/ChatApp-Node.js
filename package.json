@@ -25,5 +25,5 @@
     "url": "https://github.com/KaranParwani1116/ChatApp-Node.js/issues"
   },
   "homepage": "https://github.com/KaranParwani1116/ChatApp-Node.js#readme",
-  "description": ""
+  "description": "Realtime chatapp allows random users to chat together. It is based on socket programming which gives us the functionality of realtime. It also has a feature to block profane language. It's server is based on express. It has a eye catching UI and fast performance."
 }

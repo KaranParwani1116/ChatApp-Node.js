@@ -10,6 +10,8 @@ const addUser = ({id, username, room}) => {
         }
     }
 
+    room = room.trim().toLowerCase()
+
     //validate the data
     const existingUser = users.find((user) => {
         return user.room === room && user.username === username
