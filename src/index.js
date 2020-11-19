@@ -5,6 +5,7 @@ const Filter = require('bad-words')
 const socketio = require('socket.io')
 const {generateMessage, generateLocationMessage} = require('./utils/messages')
 const {addUser, removeUser, getUser, getUsersInRoom} = require('./utils/users')
+const {sendRoomJoinEmail, sendRoomLeaveEmail} = require('./emails/account')
 
 const app = express()
 const server = http.createServer(app)
@@ -27,7 +28,11 @@ io.on('connection', (socket) => {
 
         socket.join(user.room)
 
-        debugger
+        /**
+         * sending room joining email to user
+         */
+        sendRoomJoinEmail(options.username, options.email, options.room)
+
         socket.emit('message', generateMessage("Admin", `Welcome ${user.username}!!`))
         socket.broadcast.to(user.room).emit('message', generateMessage("Admin",`${user.username} has joined!!`))
         io.to(user.room).emit('roomData', {

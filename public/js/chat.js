@@ -13,7 +13,9 @@ const locationTemplate = document.querySelector('#location-template').innerHTML
 const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
 
 //options
-const {username, room} = Qs.parse(location.search, {ignoreQueryPrefix: true})
+const {username, room, email} = Qs.parse(location.search, {ignoreQueryPrefix: true})
+
+console.log(email)
 
 const autoScroll = () => {
 	const $newMessage = $messages.lastElementChild
@@ -101,7 +103,7 @@ $shareLocationButton.addEventListener('click', () => {
 	})
 })
 
-socket.emit('join', {username, room}, (error) => {
+socket.emit('join', {username, room, email}, (error) => {
 	if(error) {
 		alert(error)
 		location.href = '/'
