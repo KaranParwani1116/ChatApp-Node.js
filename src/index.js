@@ -10,7 +10,7 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
-const port = process.env.port || 3000
+const port = process.env.port || 8080
 const publicDirectoryPath = path.join(__dirname, '../public')
 
 app.use(express.static(publicDirectoryPath))
@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
     /**
      * When user hit send message button it passed to server via socker
      * and recieved here then this socket checks that if there is profanity
-     * in the message or not then it emits that message to the same room so 
+     * in the message or not then it emits that message to the same room so
      * all the users of that particular room will be able to see it
      */
 
