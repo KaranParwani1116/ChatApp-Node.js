@@ -184,6 +184,11 @@ button:disabled {
     padding: 12px 24px 0 24px;
 }
 
+.rooms {
+    list-style-type: none;
+}
+
+
 .user-li {
     float: left;
     padding: 2px 8px 2px 8px;

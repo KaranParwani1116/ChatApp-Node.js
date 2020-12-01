@@ -4,7 +4,7 @@ const http = require('http')
 const Filter = require('bad-words')
 const socketio = require('socket.io')
 const {generateMessage, generateLocationMessage} = require('./utils/messages')
-const {addUser, removeUser, getUser, getUsersInRoom} = require('./utils/users')
+const {addUser, removeUser, getUser, getUsersInRoom, getTopRooms} = require('./utils/users')
 const {sendRoomJoinEmail, sendRoomLeaveEmail} = require('./emails/account')
 
 const app = express()
