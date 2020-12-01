@@ -1,4 +1,4 @@
-const users = []
+let users = []
 //adduser, removeuser, getuser, getUsersInRoom
 
 const addUser = ({ id, username, room }) => {
@@ -35,6 +35,8 @@ const removeUser = (id) => {
     if (index != -1) {
         return users.splice(index, 1)[0]
     }
+
+    return index;
 }
 
 const getUser = (id) => {
@@ -86,7 +88,18 @@ const sortByCount = (rooms) => {
         return 0;
     })
 
-    return rooms.reverse().splice(0,5)
+    return rooms.reverse().splice(0, 5)
+}
+
+const getTotalUsers = () => {
+    return {
+        count: users.length,
+        users
+    }
+}
+
+const clearData = () => {
+    users = []
 }
 
 module.exports = {
@@ -94,5 +107,7 @@ module.exports = {
     removeUser,
     getUser,
     getUsersInRoom,
-    getTopRooms
+    getTopRooms,
+    getTotalUsers,
+    clearData
 }
