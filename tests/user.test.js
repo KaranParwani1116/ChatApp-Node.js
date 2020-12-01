@@ -42,7 +42,7 @@ test('addUser', () => {
  */
 test('Remove not existing user', () => {
     let users_latest = users.removeUser('abcsdada')
-    expect(users_latest).toEqual(-1)
+    expect(users_latest).toBeUndefined()
 })
 
 /**
