@@ -11,7 +11,7 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
-const port = process.env.port || 3000
+const port = process.env.port || 8080
 const publicDirectoryPath = path.join(__dirname, '../public')
 
 app.use(express.static(publicDirectoryPath))
@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
         sendRoomJoinEmail(options.username, options.email, options.room)
 
         socket.emit('message', generateMessage("Admin", `Welcome ${user.username}!!`))
-        socket.broadcast.to(user.room).emit('message', generateMessage("Admin", `${user.username} has joined!!`))
+        socket.broadcast.to(user.room).emit('message', generateMessage("Admin", `${user.username} has joined!!`));
         io.to(user.room).emit('roomData', {
             room: user.room,
             users: getUsersInRoom(user.room)
@@ -73,7 +73,7 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         const user = removeUser(socket.id)
 
-        if (user) {
+        if (user.room) {
             io.to(user.room).emit('message', generateMessage("Admin", `${user.username} has left`))
             io.to(user.room).emit('roomData', {
                 room: user.room,
